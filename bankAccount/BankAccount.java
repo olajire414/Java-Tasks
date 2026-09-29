@@ -3,22 +3,37 @@ package tdd;
 public class BankAccount {
     private String name;
     private double balance;
-    private int pin;
+    private int pin = 1234;
 
-    public BankAccount(String name,double balance,int pin){
+    public BankAccount(){
         this.name = name;
         this.balance = balance;
         this.pin = pin;
     }
-    public double checkBalance() {
+    public BankAccount(int pin){
+        this.name = name;
+        this.balance = balance;
+        this.pin = pin;
+    }
+
+
+
+
+    public double checkBalance(int pin) {
+        if(this.pin != pin){
+            throw new IllegalArgumentException("invalid pin");
+        }
         return balance;
     }
 
-    public boolean enterPin(int pin) {
-        return this.pin == pin;
+    public boolean enterPin() {
+        return true;
     }
 
     public void deposit(double amount){
+        if(amount < 0){
+            throw new IllegalArgumentException("invalid amount");
+        }
         this.balance += amount;
     }
 

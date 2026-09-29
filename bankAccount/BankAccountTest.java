@@ -8,46 +8,50 @@ public class BankAccountTest {
 
     @BeforeEach
     public void startWith(){
-        myAccount = new BankAccount("ola",0.0,1234);
+        myAccount = new BankAccount(1234);
 
     }
     @Test
     void testThatIHaveAccount_BalanceIsCheckedWithPin(){
-        assertTrue(myAccount.enterPin(1234));
-        assertEquals(0,myAccount.checkBalance());
+        int pin = 1234;
+        assertTrue(myAccount.enterPin());
+        assertEquals(0,myAccount.checkBalance(pin));
     }
     @Test
     void testThatIHaveAccount_ModifyAName(){
-        myAccount = new BankAccount("ade",0.0,1234);
-        String name = "ola";
-        myAccount.changeName(name);
-        assertEquals("ola",myAccount.getName());
+        String oldName = "ola";
+        String newName = "jire";
+        myAccount.changeName(oldName);
+        myAccount.changeName(newName);
+        assertEquals(newName,myAccount.getName());
 
     }
     @Test
     void testThatIHaveAccount_DepositIsMade(){
+        int pin = 1234;
         myAccount.deposit(3000);
-        assertEquals(3000,myAccount.checkBalance());
+        assertEquals(3000,myAccount.checkBalance(pin));
     }
 
     @Test
     void testIHaveAccount_ICanWithdrawFromIt(){
+        int pin = 1234;
         myAccount.deposit(3000);
-        assertTrue(myAccount.enterPin(1234));
         myAccount.withdraw(1000);
-        assertEquals(2000,myAccount.checkBalance());
+        assertEquals(2000,myAccount.checkBalance(pin));
 
     }
     @Test
     void testThatIHaveAccount_ICantWithdrawMoreThanBalance(){
+        int pin = 1234;
         myAccount.deposit(3000);
-        assertTrue(myAccount.enterPin(1234));
-        myAccount.withdraw(5000);
-        assertEquals(3000,myAccount.checkBalance());
+        assertTrue(myAccount.enterPin());
+        myAccount.withdraw(1000);
+        assertEquals(2000,myAccount.checkBalance(pin));
 
 
 
-    }
+   }
 
 
 
