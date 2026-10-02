@@ -3,14 +3,14 @@ package tdd;
 public class BankAccount {
     private String name;
     private double balance;
-    private int pin = 1234;
+    private String pin = "1234";
 
     public BankAccount(){
         this.name = name;
         this.balance = balance;
         this.pin = pin;
     }
-    public BankAccount(int pin){
+    public BankAccount(String pin){
         this.name = name;
         this.balance = balance;
         this.pin = pin;
@@ -19,8 +19,8 @@ public class BankAccount {
 
 
 
-    public double checkBalance(int pin) {
-        if(this.pin != pin){
+    public double checkBalance(String pin) {
+        if(!this.pin.equals(pin)){
             throw new IllegalArgumentException("invalid pin");
         }
         return balance;
